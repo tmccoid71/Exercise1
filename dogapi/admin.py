@@ -1,3 +1,10 @@
 from django.contrib import admin
+from .models import Breed
 
-# Register your models here.
+class DogAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'size', 'friendliness', 'trainability', 'sheddingamount', 'exerciseneeds')
+
+    fields = ('name', 'size', 'friendliness', 'trainability', 'sheddingamount', 'exerciseneeds')
+
+admin.site.register(Breed, DogAdmin)
