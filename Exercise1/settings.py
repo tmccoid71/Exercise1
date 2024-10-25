@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-%2n&$gssv2@c!pjepwp*4aaym9o_^+((6)1=i7tl(#6@=ru08n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost']
 
 
 # Application definition
@@ -73,15 +73,16 @@ WSGI_APPLICATION = 'Exercise1.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+import os
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'your_db_name',
-        'USER': 'your_db_user',
-        'PASSWORD': 'your_db_password',
-        'HOST': 'localhost',  # or the actual DB host
-        'PORT': '5432',  # default PostgreSQL port
+        'NAME': os.getenv('POSTGRES_DB', 'dogapi_db'),
+        'USER': os.getenv('POSTGRES_USER', 'postgres'),  # Database user
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'postgres'),
+        'HOST': 'db',  # or the actual DB host
+        'PORT': 5432, 
     }
 }
 
